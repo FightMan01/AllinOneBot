@@ -14,7 +14,7 @@ global chat_filter
 global bypass_list
 chat_filter = ["FUCK", "DICK", "SHIT", "FUCKING", "BITCH"]
 bypass_list = []
-client = commands.Bot(command_prefix='?!')
+client = commands.Bot(command_prefix='a!')
 Client = discord.Client()
 
 @client.event
@@ -38,7 +38,7 @@ async def ping(ctx):
 
 @client.command(pass_context=True)
 async def purge(ctx, amount=301):
-    '''Usage: ?!purge [amount]'''
+    '''Usage: a!purge [amount]'''
     if ctx.message.author.server_permissions.administrator or ctx.message.author.id == '416226732966936577':
         try:
             channel = ctx.message.channel
@@ -55,7 +55,7 @@ async def purge(ctx, amount=301):
 
 @client.command(pass_context=True, no_pm=True)
 async def kick(ctx, user: discord.Member, * ,reason : str = None):
-    '''Usage: ?!kick [member] [reason]'''
+    '''Usage: a!kick [member] [reason]'''
     if not ctx.message.author.bot:
         if ctx.message.author.server_permissions.administrator:
             if reason == "None":
@@ -115,7 +115,7 @@ async def leave(ctx):
 
 @client.command(aliases=['p'], pass_context=True)
 async def play(ctx, * ,url, ytdl_options=None, **kwarg):
-    '''Usage: ?!play [music]'''
+    '''Usage: a!play [music]'''
     if not ctx.message.author.bot:
         server = ctx.message.server
         voice_client = client.voice_client_in(server)
@@ -149,18 +149,18 @@ async def play(ctx, * ,url, ytdl_options=None, **kwarg):
                 await client.say("The music started! :thumbsup:")
             except:
                 print(Exception)
-                await client.say("Oops! Something went wrong. Please try ?!leave and try again. :x:")
+                await client.say("Oops! Something went wrong. Please try a!leave and try again. :x:")
             while not player.is_done():
                 await asyncio.sleep(1) 
             try:
                 server = ctx.message.server
                 voice_client = client.voice_client_in(server)
                 await voice_client.disconnect()
-                await client.say("The song is over. I left the voice chanbnel. :white_check_mark: ")
+                await client.say("The song is over. I left the voice channel. :white_check_mark: ")
             except:
                 return False
         else:
-             await client.say("It seems like I currently playing something! Please try ?!leave and try again. :x:")
+             await client.say("It seems like I currently playing something! Please try a!leave and try again. :x:")
     else:
         return False
 
